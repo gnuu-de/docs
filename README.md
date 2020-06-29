@@ -120,7 +120,8 @@ Traefic/Ingress
 ---------------
 
 ```
-# helm -n kube-system list
+helm -n kube-system list
+
 NAME    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART           APP VERSION
 traefik kube-system     5               2020-06-29 16:44:29.673154471 +0000 UTC deployed        traefik-1.81.0  1.7.19
 ```
@@ -133,8 +134,10 @@ in `/var/lib/rancher/k3s/server/manifests/traefik.yaml` enable Let's Encrypt:
 
 ```
 
+
 Cert-Manager
 ------------
+
 
 ```
 helm repo add jetstack https://charts.jetstack.io
@@ -143,3 +146,20 @@ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/relea
 kubectl apply -f https://raw.githubusercontent.com/gnuu-de/k8s/master/clusterissuer.yaml
 ```
 
+OpenEBS
+-------
+
+
+```
+kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/master/k8s/openebs-operator.yaml
+kubectl apply -f https://raw.githubusercontent.com/gnuu-de/k8s/master/storageclass.yaml
+```
+
+MySQL
+-----
+
+```
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm -n gnuu upgrade -i mysql --set persistence.storageClass=openebs-standalone stable/mysql
+kubectl get secret --namespace gnuu mysql -o jsonpath="{.data.mysql-root-password}" | base64 --decode; echo
+```
