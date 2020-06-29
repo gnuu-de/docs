@@ -5,24 +5,24 @@ K3S
 ---
 
 ```
-# curl -sfL https://get.k3s.io | sh -
+curl -sfL https://get.k3s.io | sh -
 
 ```
-extend node port range in /etc/systemd/system/k3s.service
-change
+#extend node port range in /etc/systemd/system/k3s.service
+#change
 
 ExecStart=/usr/local/bin/k3s server --kube-apiserver-arg service-node-port-range=1-65535
 
 ```
-# systemctl daemon-reload
-# systemctl restart k3s.service
+systemctl daemon-reload
+systemctl restart k3s.service
 
 ```
 Verify config, enabled addons.
 
 
 ```
-# k3s check-config
+k3s check-config
 
 Verifying binaries in /var/lib/rancher/k3s/data/3a8d3d90c0ac3531edbdbde77ce4a85062f4af8865b98cedc30ea730715d9d48/bin:
 - sha256sum: good
@@ -163,3 +163,15 @@ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 helm -n gnuu upgrade -i mysql --set persistence.storageClass=openebs-standalone stable/mysql
 kubectl get secret --namespace gnuu mysql -o jsonpath="{.data.mysql-root-password}" | base64 --decode; echo
 ```
+
+
+MySQL User
+----------
+
+
+```
+CREATE USER 'gnuuweb'@'%' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON gnuu.* TO 'gnuuweb'@'%';
+flush privileges;
+```
+
