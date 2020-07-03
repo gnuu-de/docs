@@ -115,6 +115,17 @@ STATUS: pass
 
 ```
 
+Admin Clients
+-------------
+
+```
+snap install kubectl --classic
+snap install helm --classic
+kubectl completion bash  >> .bashrc
+helm completion bash  >> .bashrc
+bash
+
+```
 
 Traefic/Ingress
 ---------------
