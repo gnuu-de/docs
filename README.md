@@ -1,6 +1,11 @@
 GNUU Infrastructure Documentation
 =================================
 
+Architecture Overview
+---------------------
+
+![GNUU-K8S.draw.svg](GNUU-K8S.draw.svg)
+
 K3S
 ---
 
