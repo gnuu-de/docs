@@ -222,9 +222,15 @@ as replacement of Perl CGI and a Job API to update configuration files or config
 in Kubernetes. For that reason are service accounts created via RBAC.
 
 
-### TODO
+### TODO's
 
-* Backup concept
+* Backup concept/S3
+
+* Monitoring
+
+* Functional tests UUCP packer
+
+* CI/CD pipeline
 
 * Firewall/Server hardening
 
