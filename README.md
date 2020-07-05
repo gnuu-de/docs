@@ -184,10 +184,49 @@ kubectl get secret --namespace gnuu mysql -o jsonpath="{.data.mysql-root-passwor
 MySQL User
 ----------
 
-
 ```
 CREATE USER 'gnuuweb'@'%' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON gnuu.* TO 'gnuuweb'@'%';
 flush privileges;
 ```
+
+
+GNUU Application
+----------------
+
+### Container developement
+
+ 
+All GNUU application used their [own Docker files](https://github.com/gnuu-de/dockerfiles).
+Docker images are auto-build and published in [Docker Hub](https://hub.docker.com/orgs/gnuu).
+Image names are common, like inn, postfix, but there are special adjustments for GNUU like
+bsmtp backend for e-mail.
+
+### GNUU Kubernetes deployment
+
+All deployment manifests are in the [K8S repo](https://github.com/gnuu-de/k8s). There are core
+deployments like storage or the default namespace and then in each folder app specific
+deployments. A HELM chart is planned for the future, currently it's easier to deploy the
+manifest per app. To let the ip-addresses of clients to the apps, the main PODs are running
+with host-network and host-port. That's required for access limitations in mail & news.
+
+TODO: set security context, pod security policy, more images as none-root
+
+### GNUU web services
+
+Static web content is delivered on behalf of nginx, Let's Encrypt and Ingress service. 
+Source of the static content is the [www repo](https://github.com/gnuu-de/www).
+The logic of the web services like user management or site configuration are in 
+the [apps repo](https://github.com/gnuu-de/apps), There are Python Flask services
+as replacement of Perl CGI and a Job API to update configuration files or configmaps
+in Kubernetes. For that reason are service accounts created via RBAC.
+
+
+### TODO
+
+* Backup concept
+
+* Firewall/Server hardening
+
+^
 
