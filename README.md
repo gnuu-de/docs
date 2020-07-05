@@ -9,12 +9,18 @@ Architecture Overview
 K3S
 ---
 
+Install [Ranchers K3S](https://k3s.io/) as a lightweight Kubernetes service,
+which runs on a single server and is also scalable to more nodes with an
+oneliner. 
+Basic installation (i.e. on a Ubuntu 20.04 Server):
+
+
 ```
 curl -sfL https://get.k3s.io | sh -
 
 ```
-#extend node port range in /etc/systemd/system/k3s.service
-#change
+To extend node port range in /etc/systemd/system/k3s.service
+change
 
 ExecStart=/usr/local/bin/k3s server --kube-apiserver-arg service-node-port-range=1-65535
 
@@ -123,6 +129,10 @@ STATUS: pass
 Admin Clients
 -------------
 
+Interaction with the cluster on the server self with kubectl and helm.
+It's also possible on remote client (not document here):
+
+
 ```
 snap install kubectl --classic
 snap install helm --classic
@@ -132,8 +142,11 @@ bash
 
 ```
 
-Traefic/Ingress
+Traefik/Ingress
 ---------------
+
+K3S is shipped with [Traefik Ingress Service](https://docs.traefik.io/).
+Verify if it's really there:
 
 ```
 helm -n kube-system list
@@ -142,7 +155,8 @@ NAME    NAMESPACE       REVISION        UPDATED                                 
 traefik kube-system     5               2020-06-29 16:44:29.673154471 +0000 UTC deployed        traefik-1.81.0  1.7.19
 ```
 
-in `/var/lib/rancher/k3s/server/manifests/traefik.yaml` enable Let's Encrypt:
+In `/var/lib/rancher/k3s/server/manifests/traefik.yaml` enable Let's Encrypt:
+
 
 ```
     acme:
@@ -153,6 +167,9 @@ in `/var/lib/rancher/k3s/server/manifests/traefik.yaml` enable Let's Encrypt:
 
 Cert-Manager
 ------------
+
+The [Cert-Manager](https://cert-manager.io/docs/) handles certificate issueing and monitores certifcates
+lifetime and re-issueing automatically:
 
 
 ```
@@ -165,6 +182,9 @@ kubectl apply -f https://raw.githubusercontent.com/gnuu-de/k8s/master/clusteriss
 OpenEBS
 -------
 
+[OpenEBS](https://openebs.io/) provides volume storage to Kubernetes. Best option in Open Source
+without cloud backend. On a single server we have only one storage class without redundancy:
+
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/master/k8s/openebs-operator.yaml
@@ -174,15 +194,31 @@ kubectl apply -f https://raw.githubusercontent.com/gnuu-de/k8s/master/storagecla
 MySQL
 -----
 
+For user- and configuration management a MySQL instance is required. Best shipped in a Helm
+Chart and installed with the OpenEBS volume backend:
+
+
 ```
 helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 helm -n gnuu upgrade -i mysql --set persistence.storageClass=openebs-standalone stable/mysql
 kubectl get secret --namespace gnuu mysql -o jsonpath="{.data.mysql-root-password}" | base64 --decode; echo
 ```
 
+With the generated root password it's possible to connect to the MySQL instance, i.e. from
+an admin POD:
+
+```
+kubectl get service mysql -o jsonpath='{.spec.clusterIP}'
+kubectl run -i --tty busybox --image=gnuu/busybox --restart=Never -- bash
+# apt update && apt install mysql-client
+# mysql -h<ClusterIP> -uroot -p<password>
+```
 
 MySQL User
 ----------
+
+Create one or more MySQL user and set permissions:
+
 
 ```
 CREATE USER 'gnuuweb'@'%' IDENTIFIED BY 'password';
@@ -233,6 +269,4 @@ in Kubernetes. For that reason are service accounts created via RBAC.
 * CI/CD pipeline
 
 * Firewall/Server hardening
-
-^
 
