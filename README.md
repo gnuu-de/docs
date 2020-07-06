@@ -266,6 +266,8 @@ in Kubernetes. For that reason are service accounts created via RBAC.
 
 * Functional tests UUCP packer
 
+* Helm Chart/[Kubernetes Operator](https://sdk.operatorframework.io/docs/helm/quickstart/)
+
 * CI/CD pipeline
 
 * Firewall/Server hardening
