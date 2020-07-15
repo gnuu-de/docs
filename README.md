@@ -139,6 +139,7 @@ snap install helm --classic
 kubectl completion bash  >> .bashrc
 helm completion bash  >> .bashrc
 bash
+export KUBECONFIG=/var/lib/rancher/k3s/server/cred/admin.kubeconfig
 
 ```
 
