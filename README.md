@@ -258,6 +258,36 @@ the [apps repo](https://github.com/gnuu-de/apps), There are Python Flask service
 as replacement of Perl CGI and a Job API to update configuration files or configmaps
 in Kubernetes. For that reason are service accounts created via RBAC.
 
+### Retirements
+
+#### Chat System
+
+http://www.gnuu.de/chat was required for the yearly association meeting. 
+The PHP application (http://www.ajaxchat.org) is outdated, insecure, unstable, and for some
+user not comfortable. Should be replaced by a meeting tool.
+
+#### Mailing Lists (Mailman)
+
+In fact there are only 2 mailinglists (gnuu-talk and gnuu-admin) with a very low traffic
+(< 10 postings per year). Mailman needs more resource for maintenance as there is effort
+for 10 postings. Should be replaced by a managed community tool or a modern tool which
+joins chat and e-mail.
+
+#### Various Statistics
+
+##### MRTGs, Web, Mail, DNS
+
+Most of them are broken (http://www.gnuu.de/statistik.html) Newsreport needs a new home:
+standalone app for serving http based on the report data from the news storage.
+
+##### de-posters, Freenix
+
+de-posters counted the postings in de.* newsgroups per person per month (was also part of Mailman).
+Freenix is still alive (http://top1000.anthologeek.net/), uucp.gnuu.de on play 460.
+
+
+
+#### Mailinglist Mailman
 
 ### TODO's
 
