@@ -6,6 +6,7 @@ Architecture Overview
 
 ![GNUU-K8S.draw.svg](GNUU-K8S.draw.svg)
 
+
 K3S
 ---
 
@@ -286,9 +287,6 @@ de-posters counted the postings in de.* newsgroups per person per month (was als
 Freenix is still alive (http://top1000.anthologeek.net/), uucp.gnuu.de on play 460.
 
 
-
-#### Mailinglist Mailman
-
 ### TODO's
 
 * Backup concept/S3
@@ -303,3 +301,5 @@ Freenix is still alive (http://top1000.anthologeek.net/), uucp.gnuu.de on play 4
 
 * Firewall/Server hardening
 
+### Deploy Pipeline
+![Deploy Pipeline](gnuu-cicd-delivery.png)
