@@ -291,7 +291,9 @@ Freenix is still alive (http://top1000.anthologeek.net/), uucp.gnuu.de on play 4
 
 * Backup concept/S3
 
-* Monitoring
+* Monitoring 
+  * https://github.com/coreos/prometheus-operator
+  * https://github.com/rycus86/prometheus_flask_exporter
 
 * Functional tests UUCP packer
 
