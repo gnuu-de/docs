@@ -2,7 +2,7 @@ Kubernetes Log Pattern
 ======================
 
 In GNUU we push "traditional" internet services like email, news and uucp
-into container. Kubernetes has a {Logging Concept](https://kubernetes.io/docs/concepts/cluster-administration/logging/)
+into container. Kubernetes has a [Logging Concept](https://kubernetes.io/docs/concepts/cluster-administration/logging/)
 and [12 Factor App](https://12factor.net) describes: you have ship log to STDERR and STDOUT.
 That's atypical for traditionally service which this option only provides for developement
 or debugging.
@@ -124,6 +124,7 @@ the STDOUT of this container will be the syslog part of INN:
 
 
 ```
+$ kubectl -n gnuu logs news-0 --container newslog
 2020-07-24T21:44:52.460779+00:00 quickstart1 innd: SERVER starting
 2020-07-24T21:44:52.528670+00:00 quickstart1 controlchan[40]: starting
 2020-07-24T21:44:54.509889+00:00 quickstart1 innfeed[41]: uucp.gnuu.de:0 cxnsleep no permission to talk: 502 You have no permission to talk.  Goodbye!
