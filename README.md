@@ -20,6 +20,9 @@ Basic installation (i.e. on a Ubuntu 20.04 Server):
 curl -sfL https://get.k3s.io | sh -
 
 ```
+This command will also upgrade existing K3S installations. Optional there is an [automated update procedure](https://rancher.com/docs/k3s/latest/en/upgrades/automated/)
+
+
 To extend node port range in /etc/systemd/system/k3s.service
 change
 
@@ -299,9 +302,18 @@ Freenix is still alive (http://top1000.anthologeek.net/), uucp.gnuu.de on play 4
 
 * Helm Chart/[Kubernetes Operator](https://sdk.operatorframework.io/docs/helm/quickstart/)
 
-* CI/CD pipeline
+* ~~CI/CD pipeline~~
 
 * Firewall/Server hardening
 
 ### Deploy Pipeline
+
 ![Deploy Pipeline](gnuu-cicd-delivery.png)
+
+CI/CD is done in the following ways:
+
+* Commit in [dockerfiles repo](https://github.com/gnuu-de/dockerfiles/) will trigger various [Github Actions](https://github.com/gnuu-de/dockerfiles/tree/master/.github/workflows). Docker images will build and push to Docker Hub. A Webhook triggered api.gnuu.de. First task is notification the Gnuu Dev Matrix Channel about a new image version and a rolling upgrade of the application which used the image.
+
+* Commit in [Apps repo](https://github.com/gnuu-de/apps/) will trigger [Github Actions](https://github.com/gnuu-de/apps/tree/master/.github/workflows) with directly application restart. A [Webhook in the repo](https://github.com/gnuu-de/apps/settings/hooks) sends notification on the Gnuu Matrix CHannel. This is done via the Github integration service in Matrix/Element.
+
+* Furthermore each configuration change from the user via web ui will call the internal job service. This service builds the specific config maps and reloads the news server configuration.
