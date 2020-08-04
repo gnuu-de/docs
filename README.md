@@ -290,22 +290,6 @@ de-posters counted the postings in de.* newsgroups per person per month (was als
 Freenix is still alive (http://top1000.anthologeek.net/), uucp.gnuu.de on play 460.
 
 
-### TODO's
-
-* Backup concept/S3
-
-* Monitoring 
-  * https://github.com/coreos/prometheus-operator
-  * https://github.com/rycus86/prometheus_flask_exporter
-
-* Functional tests UUCP packer
-
-* Helm Chart/[Kubernetes Operator](https://sdk.operatorframework.io/docs/helm/quickstart/)
-
-* ~~CI/CD pipeline~~
-
-* Firewall/Server hardening
-
 ### Deploy Pipeline
 
 ![Deploy Pipeline](gnuu-cicd-delivery.png)
@@ -317,3 +301,23 @@ CI/CD is done in the following ways:
 * Commit in [Apps repo](https://github.com/gnuu-de/apps/) will trigger [Github Actions](https://github.com/gnuu-de/apps/tree/master/.github/workflows) with directly application restart. A [Webhook in the repo](https://github.com/gnuu-de/apps/settings/hooks) sends notification on the Gnuu Matrix CHannel. This is done via the Github integration service in Matrix/Element.
 
 * Furthermore each configuration change from the user via web ui will call the internal job service. This service builds the specific config maps and reloads the news server configuration.
+
+### Functional tests
+
+described in [TEST.md](TEST.md)
+
+### TODO's
+
+* Backup concept/S3
+
+* Monitoring 
+  * https://github.com/coreos/prometheus-operator
+  * https://github.com/rycus86/prometheus_flask_exporter
+
+* ~~Functional tests UUCP packer~~
+
+* Helm Chart/[Kubernetes Operator](https://sdk.operatorframework.io/docs/helm/quickstart/)
+
+* ~~CI/CD pipeline~~
+
+* Firewall/Server hardening
