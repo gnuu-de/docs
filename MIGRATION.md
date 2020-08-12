@@ -36,11 +36,16 @@ password=xxxxxx
 ```
 
 ```
-systemctl stop mysql
 systemctl stop postfix
 systemctl stop innd
 systemctl stop apache2
 systemctl stop xinetd
+mysql gnuu
+> show grants for 'gnuuweb'@'localhost';
+# remark permissions
+>quit
+mysqldump gnuu > /data/mysqlbackup/gnuu.sql
+systemctl stop mysql
 mount /hidrive
 cd /hidrive/users/xxxx
 tar cvfz data-20200804.tgz /data
@@ -74,3 +79,10 @@ tar xvfz /hidrive/users/xxxx/data-20200804.tgz
 
 MySQL Restore from backup
 -------------------------
+
+```
+kubectl exec -it mysql-5cbf8684cc-jfwh2 -- mysql -e "create database gnuu"
+kubectl exec -it mysql-5cbf8684cc-jfwh2 -- mysql gnuu < /data/mysqlbackup/gnuu.sql
+# create app user
+kubectl exec -it mysql-5cbf8684cc-jfwh2 -- mysql -e "flush privileges"
+```
