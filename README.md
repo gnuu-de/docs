@@ -308,6 +308,8 @@ described in [TEST.md](TEST.md)
 
 ### TODO's
 
+* News config http://www.gnuu.de/config/
+
 * Backup concept/S3
 
 * Monitoring 
