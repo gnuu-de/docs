@@ -37,14 +37,16 @@ password=xxxxxx
 
 ```
 systemctl stop postfix
-systemctl stop innd
+systemctl stop inn
 systemctl stop apache2
 systemctl stop xinetd
 mysql gnuu
 > show grants for 'gnuuweb'@'localhost';
 # remark permissions
 >quit
-mysqldump gnuu > /data/mysqlbackup/gnuu.sql
+mysqldump mysql > /data/mysqlbackups/mysql.sql
+mysqldump gnuu > /data/mysqlbackups/gnuu.sql
+mysqldump sqlgrey > /data/mysqlbackups/sqlgrey.sql
 systemctl stop mysql
 mount /hidrive
 cd /hidrive/users/xxxx
