@@ -205,7 +205,7 @@ Chart and installed with the OpenEBS volume backend:
 
 ```
 helm repo add stable https://kubernetes-charts.storage.googleapis.com/
-helm -n gnuu upgrade -i mysql --set persistence.storageClass=openebs-standalone stable/mysql
+helm -n gnuu upgrade -i mysql --set persistence.storageClass=openebs-standalone stable/mysql --create-namespace
 kubectl get secret --namespace gnuu mysql -o jsonpath="{.data.mysql-root-password}" | base64 --decode; echo
 ```
 
