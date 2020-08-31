@@ -306,11 +306,18 @@ CI/CD is done in the following ways:
 
 described in [TEST.md](TEST.md)
 
+### Backup/S3
+
+Deployed infrastructure is hosted as code, no backups of configuration files are required. Custom packages are as source code available and built in K8S jobs.
+For user data [Velero S3 backup](https://docs.openebs.io/v090/docs/next/backup.html) was planned which works not on uucp.gnuu.de. As workaround we have a [K8S Job](https://github.com/gnuu-de/k8s/blob/master/backup/job.yml) which copies /data to Strato Hidrive S3 storage. This can be applied as cron as well.
+
 ### TODO's
 
 * News config http://www.gnuu.de/config/
 
-* Backup concept/S3
+* [IPv6](https://kubernetes.io/docs/concepts/services-networking/dual-stack/) (as fallback we have IPv4-only)
+
+* ~~~Backup concept/S3~~~
 
 * Monitoring 
   * https://github.com/coreos/prometheus-operator
