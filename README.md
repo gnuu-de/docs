@@ -315,12 +315,12 @@ For user data [Velero S3 backup](https://docs.openebs.io/v090/docs/next/backup.h
 
 * News config http://www.gnuu.de/config/
 
-* [IPv6](https://kubernetes.io/docs/concepts/services-networking/dual-stack/) (as fallback we have IPv4-only)
+* [IPv6](https://kubernetes.io/docs/concepts/services-networking/dual-stack/) (looking for [HostNetwork Baremetal](https://github.com/kubernetes/kubernetes/issues/91940) which seems unsupported at the moment (10/2020))
 
-* ~~~Backup concept/S3~~~
+* ~~Backup concept/S3~~
 
 * Monitoring 
-  * https://github.com/coreos/prometheus-operator
+  * ~~https://github.com/coreos/prometheus-operator~~ (no resources free on current server)
   * https://github.com/rycus86/prometheus_flask_exporter
 
 * ~~Functional tests UUCP packer~~
@@ -329,4 +329,4 @@ For user data [Velero S3 backup](https://docs.openebs.io/v090/docs/next/backup.h
 
 * ~~CI/CD pipeline~~
 
-* Firewall/Server hardening
+* ~~Firewall/Server hardening~~
