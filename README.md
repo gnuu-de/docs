@@ -313,7 +313,7 @@ For user data [Velero S3 backup](https://docs.openebs.io/v090/docs/next/backup.h
 
 ### TODO's
 
-* News config http://www.gnuu.de/config/
+* ~~News config http://www.gnuu.de/config/~~
 
 * [IPv6](https://kubernetes.io/docs/concepts/services-networking/dual-stack/) (looking for [HostNetwork Baremetal](https://github.com/kubernetes/kubernetes/issues/91940) which seems unsupported at the moment (10/2020))
 
