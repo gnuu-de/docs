@@ -183,7 +183,7 @@ helm install cert-manager --namespace cert-manager jetstack/cert-manager --versi
 kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.1.0/cert-manager.crds.yaml
 kubectl apply -f https://raw.githubusercontent.com/gnuu-de/k8s/master/clusterissuer.yaml
 ```
-Uograde process is described [here](https://cert-manager.io/docs/installation/upgrading/upgrading-0.16-1.0/)
+Upgrade process is described [here](https://cert-manager.io/docs/installation/upgrading/upgrading-0.16-1.0/)
 
 OpenEBS
 -------
