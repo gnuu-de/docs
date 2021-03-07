@@ -323,6 +323,7 @@ For user data [Velero S3 backup](https://docs.openebs.io/v090/docs/next/backup.h
 * Monitoring 
   * ~~https://github.com/coreos/prometheus-operator~~ (no resources free on current server)
   * https://github.com/rycus86/prometheus_flask_exporter
+  * https://github.com/kumina/postfix_exporter/issues/68
 
 * ~~Functional tests UUCP packer~~
 
