@@ -185,17 +185,33 @@ kubectl apply -f https://raw.githubusercontent.com/gnuu-de/k8s/master/clusteriss
 ```
 Upgrade process is described [here](https://cert-manager.io/docs/installation/upgrading/upgrading-0.16-1.0/)
 
-OpenEBS
+Rancher
 -------
 
-[OpenEBS](https://openebs.io/) provides volume storage to Kubernetes. Best option in Open Source
-without cloud backend. On a single server we have only one storage class without redundancy:
-
+Install Rancher for K8S administration:
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/master/k8s/openebs-operator.yaml
-kubectl apply -f https://raw.githubusercontent.com/gnuu-de/k8s/master/storageclass.yaml
+ helm upgrade -i rancher rancher-latest/rancher \
+    --namespace cattle-system \
+    --set hostname=rancher.gnuu.de \
+    --set ingress.tls.source=letsEncrypt \
+    --set letsEncrypt.email=letsencrypt@admin.gnuu.de \
+    --set letsEncrypt.ingress.class=traefik \
+    --set replicas=1 \
+    --version v2.5.6 \
+    --wait --timeout 10m0s \
+    --create-namespace  
 ```
+
+
+Longhorn
+--------
+
+Install Longhorn App from Apps&Marketplace. The volume replica count is 1, because of only one existing node.
+
+```
+```
+
 
 MySQL
 -----
@@ -206,7 +222,7 @@ Chart and installed with the OpenEBS volume backend:
 
 ```
 helm repo add stable https://kubernetes-charts.storage.googleapis.com/
-helm -n gnuu upgrade -i mysql --set persistence.storageClass=openebs-standalone stable/mysql --create-namespace
+helm -n gnuu2 upgrade -i mysql --set persistence.storageClass=longhorn stable/mysql --create-namespace
 kubectl get secret --namespace gnuu mysql -o jsonpath="{.data.mysql-root-password}" | base64 --decode; echo
 ```
 
