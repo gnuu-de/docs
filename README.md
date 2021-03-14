@@ -213,6 +213,15 @@ Install Longhorn App from Apps&Marketplace. The volume replica count is 1, becau
 helm upgrade --install=true --namespace=longhorn-system --timeout=10m0s --values=/home/shell/helm/values-longhorn-crd-1.1.000.yaml --version=1.1.000 --wait=true longhorn-crd /home/shell/helm/longhorn-crd-1.1.000.tgz 
 ```
 
+Monitoring
+----------
+
+Install Monitoring App from Apps&Marketplace. Use longhorn StorageClass for PVC
+
+```
+helm upgrade --install=true --namespace=cattle-monitoring-system --timeout=10m0s --values=/home/shell/helm/values-rancher-monitoring-crd-9.4.202.yaml --version=9.4.202 --wait=true rancher-monitoring-crd /home/shell/helm/rancher-monitoring-crd-9.4.202.tgz 
+````
+
 
 MySQL
 -----
