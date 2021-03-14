@@ -17,7 +17,7 @@ Basic installation (i.e. on a Ubuntu 20.04 Server):
 
 
 ```
-curl -sfL https://get.k3s.io | sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=v1.19.5+k3s2 sh -
 
 ```
 This command will also upgrade existing K3S installations. Optional there is an [automated update procedure](https://rancher.com/docs/k3s/latest/en/upgrades/automated/)
