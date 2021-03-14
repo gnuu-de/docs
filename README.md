@@ -179,8 +179,8 @@ lifetime and re-issueing automatically:
 
 ```
 helm repo add jetstack https://charts.jetstack.io
-helm install cert-manager --namespace cert-manager jetstack/cert-manager --version v1.1.0
-kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.1.0/cert-manager.crds.yaml
+helm install cert-manager --namespace cert-manager jetstack/cert-manager --version v1.2.0
+kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.2.0/cert-manager.crds.yaml
 kubectl apply -f https://raw.githubusercontent.com/gnuu-de/k8s/master/clusterissuer.yaml
 ```
 Upgrade process is described [here](https://cert-manager.io/docs/installation/upgrading/upgrading-0.16-1.0/)
@@ -210,6 +210,7 @@ Longhorn
 Install Longhorn App from Apps&Marketplace. The volume replica count is 1, because of only one existing node.
 
 ```
+helm upgrade --install=true --namespace=longhorn-system --timeout=10m0s --values=/home/shell/helm/values-longhorn-crd-1.1.000.yaml --version=1.1.000 --wait=true longhorn-crd /home/shell/helm/longhorn-crd-1.1.000.tgz 
 ```
 
 
