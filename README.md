@@ -232,7 +232,7 @@ Chart and installed with the OpenEBS volume backend:
 
 ```
 helm repo add stable https://charts.helm.sh/stable
-helm -n gnuu upgrade -i mysql --set persistence.storageClass=longhorn stable/mysql --create-namespace
+helm -n gnuu upgrade -i mysql --set persistence.storageClass=longhorn-static stable/mysql --create-namespace
 kubectl -n gnuu get secret mysql -o jsonpath="{.data.mysql-root-password}" | base64 --decode; echo
 ```
 
