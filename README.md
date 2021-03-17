@@ -268,6 +268,8 @@ CREATE USER 'gnuuweb'@'%' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON gnuu.* TO 'gnuuweb'@'%';
 CREATE USER 'gnuubackup'@'%' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON gnuu.* TO 'gnuubackup'@'%';
+GRANT ALL PRIVILEGES ON sqlgrey.* TO 'gnuuweb'@'%';
+GRANT ALL PRIVILEGES ON sqlgrey.* TO 'gnuubackup'@'%';
 flush privileges;
 ```
 
