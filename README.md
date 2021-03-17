@@ -213,6 +213,16 @@ Install Longhorn App from Apps&Marketplace. The volume replica count is 1, becau
 helm upgrade --install=true --namespace=longhorn-system --timeout=10m0s --values=/home/shell/helm/values-longhorn-crd-1.1.000.yaml --version=1.1.000 --wait=true longhorn-crd /home/shell/helm/longhorn-crd-1.1.000.tgz 
 ```
 
+Install S3 credentials in Longhorn namespace, setup S3 backup location.
+
+Create 3 volumes: data, repo, mysql
+
+Create 3 PVC
+
+Test snapshot/backup
+
+Setup backup scheduler on a daily or weekly base
+
 Monitoring
 ----------
 
@@ -220,8 +230,9 @@ Install Monitoring App from Apps&Marketplace. Use longhorn StorageClass for PVC
 
 ```
 helm upgrade --install=true --namespace=cattle-monitoring-system --timeout=10m0s --values=/home/shell/helm/values-rancher-monitoring-crd-9.4.202.yaml --version=9.4.202 --wait=true rancher-monitoring-crd /home/shell/helm/rancher-monitoring-crd-9.4.202.tgz 
-````
+```
 
+[k8s/monitoring](https://github.com/gnuu-de/k8s/tree/master/monitoring) includes Rancher project level monitoring (WiP)
 
 MySQL
 -----
@@ -255,6 +266,8 @@ Create one or more MySQL user and set permissions:
 ```
 CREATE USER 'gnuuweb'@'%' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON gnuu.* TO 'gnuuweb'@'%';
+CREATE USER 'gnuubackup'@'%' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON gnuu.* TO 'gnuubackup'@'%';
 flush privileges;
 ```
 
@@ -336,7 +349,8 @@ described in [TEST.md](TEST.md)
 ### Backup/S3
 
 Deployed infrastructure is hosted as code, no backups of configuration files are required. Custom packages are as source code available and built in K8S jobs.
-For user data [Velero S3 backup](https://docs.openebs.io/v090/docs/next/backup.html) was planned which works not on uucp.gnuu.de. As workaround we have a [K8S Job](https://github.com/gnuu-de/k8s/blob/master/backup/job.yml) which copies /data to Strato Hidrive S3 storage. This can be applied as cron as well.
+Volume backups are done by [Longhorn](https://longhorn.io/docs/1.0.0/snapshots-and-backups/backup-and-restore/)
+(UI, no code)
 
 ### TODO's
 
@@ -347,13 +361,13 @@ For user data [Velero S3 backup](https://docs.openebs.io/v090/docs/next/backup.h
 * ~~Backup concept/S3~~
 
 * Monitoring 
-  * ~~https://github.com/coreos/prometheus-operator~~ (no resources free on current server)
-  * https://github.com/rycus86/prometheus_flask_exporter
+  * ~~https://github.com/coreos/prometheus-operator~~
+  * ~~https://github.com/rycus86/prometheus_flask_exporter~~
   * https://github.com/kumina/postfix_exporter/issues/68
 
 * ~~Functional tests UUCP packer~~
 
-* Helm Chart/[Kubernetes Operator](https://sdk.operatorframework.io/docs/helm/quickstart/)
+* ~~Helm Chart/[Kubernetes Operator](https://sdk.operatorframework.io/docs/helm/quickstart/)~~
 
 * ~~CI/CD pipeline~~
 

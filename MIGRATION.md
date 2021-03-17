@@ -18,12 +18,12 @@ Must be in sync or postfix won't start
 Data
 ----
 
-Restore data from S3 (see k8s/backups for jobs)
+Restore data from S3 (see [k8s/backup](https://github.com/gnuu-de/k8s/tree/master/backup) for jobs)
 
 Repo
 ----
 
-Restore data from S3 (see k8s/backups for jobs)
+Restore data from S3 (see [k8s/backup](https://github.com/gnuu-de/k8s/tree/master/backup) for jobs)
 
 
 Migration 2020
