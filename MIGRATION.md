@@ -1,5 +1,33 @@
-Migration
-=========
+Migration 2021
+==============
+
+MySQL
+-----
+
+1. Restore MySQL backup from S3 (see k8s/backups for jobs)
+2. Restore gnuu db in mysql pod
+3. Restore sqlgrey in mysql pod
+4. Create app user as described in README.md
+
+Mail-0
+-------
+
+There is possibly a missmatch between /etc/resolv.conf in mail-0 pod and /data/spool/postfix/etc/resolv.conf version.
+Must be in sync or postfix won't start
+
+Data
+----
+
+Restore data from S3 (see k8s/backups for jobs)
+
+Repo
+----
+
+Restore data from S3 (see k8s/backups for jobs)
+
+
+Migration 2020
+==============
 
 
 MySQL
