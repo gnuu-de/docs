@@ -191,6 +191,7 @@ Rancher
 Install Rancher for K8S administration:
 
 ```
+ helm repo add rancher-latest  https://releases.rancher.com/server-charts/latest
  helm upgrade -i rancher rancher-latest/rancher \
     --namespace cattle-system \
     --set hostname=rancher.gnuu.de \
