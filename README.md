@@ -179,7 +179,7 @@ lifetime and re-issueing automatically:
 
 ```
 helm repo add jetstack https://charts.jetstack.io
-helm install cert-manager --namespace cert-manager jetstack/cert-manager --version v1.2.0
+helm install cert-manager --namespace cert-manager jetstack/cert-manager --version v1.2.0 --create-namespace
 kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.2.0/cert-manager.crds.yaml
 kubectl apply -f https://raw.githubusercontent.com/gnuu-de/k8s/master/clusterissuer.yaml
 ```
