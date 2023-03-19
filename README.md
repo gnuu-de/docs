@@ -357,21 +357,8 @@ Volume backups are done by [Longhorn](https://longhorn.io/docs/1.0.0/snapshots-a
 
 ### TODO's
 
-* ~~News config http://www.gnuu.de/config/~~
-
-* [IPv6](https://kubernetes.io/docs/concepts/services-networking/dual-stack/) (looking for [HostNetwork Baremetal](https://github.com/kubernetes/kubernetes/issues/91940) which seems unsupported at the moment (10/2020))
-
-* ~~Backup concept/S3~~
-
-* Monitoring 
-  * ~~https://github.com/coreos/prometheus-operator~~
-  * ~~https://github.com/rycus86/prometheus_flask_exporter~~
-  * https://github.com/kumina/postfix_exporter/issues/68
-
-* ~~Functional tests UUCP packer~~
-
-* ~~Helm Chart/[Kubernetes Operator](https://sdk.operatorframework.io/docs/helm/quickstart/)~~
-
-* ~~CI/CD pipeline~~
-
 * ~~Firewall/Server hardening~~
+
+### Changelog
+
+see [CHANGELOG.md](CHANGELOG.md)
